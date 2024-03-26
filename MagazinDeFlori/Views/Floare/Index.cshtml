@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MagazinDeFlori.Models.Floare>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Adaugare in Cos</h1>
+
+<p>
+    <a asp-action="Create" class="btn-primary btn">Adauga floare</a>
+</p>
+
+<div class="container mt-5">
+    <div class="row">
+        <style>
+            .card .card-img {
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
+            }
+        </style>
+
+        @foreach (var floare in Model)
+        {
+            <div class="col-3 mb-4">
+                <div class="card" style="height:400px">
+                    <img src="~/Images/@floare.Imagime" class="card-img" />
+
+                    <div class="card-body">
+                        <hr />
+                        <h4 class="card-text" style="color:dimgrey">@floare.Denumire</h4>
+                        <p class="card-text">@floare.Descriere</p>
+                        <h5 class="card-title" style="text-align: right; color: red;">@floare.Pret Lei</h5>
+                        <a asp-action="Edit" asp-route-id="@floare.CodFloare">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@floare.CodFloare">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@floare.CodFloare">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+</div>
